@@ -10,7 +10,7 @@ interface FetchQueryResponse {
 export const fetchQuery = async (
   query: string,
   page: number
-): Promise<Movie[]> => {
+): Promise<FetchQueryResponse> => {
   const myKey = import.meta.env.VITE_API_KEY;
   axios.defaults.baseURL = "https://api.themoviedb.org/3";
 
@@ -18,5 +18,5 @@ export const fetchQuery = async (
     params: { query, page },
     headers: { accept: "application/json", Authorization: `Bearer ${myKey}` },
   });
-  return response.data.results;
+  return response.data;
 };
